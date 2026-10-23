@@ -17,15 +17,15 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#1a1a1a,#2c3e50);
+    background:linear-gradient(135deg,#1e293b,#0f172a);
     font-family:Georgia, serif;
-    overflow:hidden;
 }
 
 .book{
     position:relative;
-    width:800px;
-    height:500px;
+    width:850px;
+    height:550px;
+    perspective:2000px;
 }
 
 .page{
@@ -33,8 +33,8 @@ body{
     width:100%;
     height:100%;
     transform-origin:left;
-    transition:transform 1s ease;
-    cursor:pointer;
+    transition:transform 1s;
+    transform-style:preserve-3d;
 }
 
 .page.flipped{
@@ -47,184 +47,130 @@ body{
     width:100%;
     height:100%;
     backface-visibility:hidden;
+    background:#fffef7;
     border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    box-shadow:0 15px 35px rgba(0,0,0,0.35);
 }
 
 .front{
-    background:#fffef5;
     padding:50px;
 }
 
 .back{
-    background:#fffef5;
     padding:50px;
     transform:rotateY(180deg);
 }
 
 .page-content{
-    height:100%;
-    border-left:2px solid #d8d8d8;
+    border-left:3px solid #e5e5e5;
     padding-left:25px;
-}
-
-h1{
-    color:#2c3e50;
-    margin-bottom:20px;
-}
-
-h2{
-    color:#34495e;
-    margin-bottom:20px;
-}
-
-p{
-    color:#555;
-    line-height:1.8;
-    margin-bottom:15px;
+    height:100%;
 }
 
 .cover{
-    background:linear-gradient(135deg,#3498db,#2c3e50);
+    background:linear-gradient(135deg,#2563eb,#1e3a8a);
     color:white;
-    text-align:center;
 }
 
 .cover h1{
     color:white;
     font-size:3rem;
-    margin-top:100px;
+    margin-top:120px;
 }
 
 .cover p{
-    color:white;
+    color:#e2e8f0;
 }
 
-.note{
-    position:absolute;
-    bottom:20px;
-    right:20px;
-    color:#999;
-    font-size:14px;
+h1,h2{
+    margin-bottom:20px;
+}
+
+p{
+    line-height:1.8;
+    color:#444;
+    margin-bottom:15px;
 }
 
 ul{
-    margin-left:25px;
-    color:#555;
+    margin-left:20px;
 }
 
 li{
-    margin-bottom:10px;
+    margin-bottom:12px;
+}
+
+.controls{
+    position:fixed;
+    bottom:25px;
+    display:flex;
+    gap:15px;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.page1{ z-index:4; }
+.page2{ z-index:3; }
+.page3{ z-index:2; }
+.page4{ z-index:1; }
+
+.badge{
+    display:inline-block;
+    background:#eff6ff;
+    color:#2563eb;
+    padding:6px 12px;
+    border-radius:20px;
+    margin-bottom:20px;
+    font-size:14px;
 }
 </style>
 </head>
-
 <body>
 
 <div class="book">
 
     <!-- Cover -->
-    <div class="page" style="z-index:4;">
+    <div class="page page1">
         <div class="front cover">
             <h1>📖 Arun's Cloud Notebook</h1>
-            <p>AWS | Kubernetes | DevOps | Engineering</p>
+            <p>AWS • Kubernetes • DevOps • Platform Engineering</p>
             <br><br>
-            <p>Click anywhere on the page to turn it</p>
-        </div>
-    </div>
-
-    <!-- Page 1 -->
-    <div class="page" style="z-index:3;">
-        <div class="front">
-            <div class="page-content">
-                <h2>👋 Welcome</h2>
-                <p>
-                    Welcome to my personal blog.
-                    Here I share experiences, lessons learned,
-                    troubleshooting tips and cloud engineering insights.
-                </p>
-
-                <p>
-                    Topics include AWS, Kubernetes,
-                    Crossplane, EKS, IAM, networking
-                    and platform engineering.
-                </p>
-
-                <div class="note">Turn Page →</div>
-            </div>
-        </div>
-
-        <div class="back">
-            <div class="page-content">
-                <h2>☁️ AWS Notes</h2>
-                <ul>
-                    <li>VPC Design</li>
-                    <li>Transit Gateway</li>
-                    <li>IAM Best Practices</li>
-                    <li>EKS Operations</li>
-                    <li>Cost Optimization</li>
-                </ul>
-            </div>
+            <p>Use the buttons below to turn pages.</p>
         </div>
     </div>
 
     <!-- Page 2 -->
-    <div class="page" style="z-index:2;">
+    <div class="page page2">
         <div class="front">
             <div class="page-content">
-                <h2>⚙️ DevOps</h2>
+                <span class="badge">Welcome</span>
+                <h2>👋 Hello!</h2>
 
                 <p>
-                    CI/CD pipelines, GitHub Actions,
-                    Infrastructure as Code and automation.
+                    Welcome to my personal tech notebook.
+                    I share practical cloud engineering experiences,
+                    troubleshooting lessons and automation ideas.
                 </p>
 
                 <p>
-                    Building reliable cloud platforms
-                    through automation and observability.
+                    Topics include AWS, EKS, Kubernetes,
+                    Crossplane, networking and platform engineering.
                 </p>
             </div>
         </div>
 
         <div class="back">
             <div class="page-content">
-                <h2>🚀 Contact</h2>
-
-                <p>
-                    Thanks for visiting the notebook.
-                </p>
-
-                <p>
-                    More articles coming soon.
-                </p>
-
-                <p>
-                    GitHub: arunwinxp
-                </p>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<script>
-const pages = document.querySelectorAll(".page");
-let current = 0;
-
-pages.forEach((page,index)=>{
-    page.addEventListener("click",()=>{
-
-        if(index === current){
-            page.classList.add("flipped");
-            current++;
-        } else if(index === current - 1){
-            page.classList.remove("flipped");
-            current--;
-        }
-    });
-});
-</script>
-
-</body>
-</html>
+               
