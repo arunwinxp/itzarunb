@@ -1,26 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Blog</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #f4f4f4;
-            padding-top: 100px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arun's Cloud Notebook</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1a1a1a,#2c3e50);
+    font-family:Georgia, serif;
+    overflow:hidden;
+}
+
+.book{
+    position:relative;
+    width:800px;
+    height:500px;
+}
+
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    transform-origin:left;
+    transition:transform 1s ease;
+    cursor:pointer;
+}
+
+.page.flipped{
+    transform:rotateY(-180deg);
+}
+
+.front,
+.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    backface-visibility:hidden;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.front{
+    background:#fffef5;
+    padding:50px;
+}
+
+.back{
+    background:#fffef5;
+    padding:50px;
+    transform:rotateY(180deg);
+}
+
+.page-content{
+    height:100%;
+    border-left:2px solid #d8d8d8;
+    padding-left:25px;
+}
+
+h1{
+    color:#2c3e50;
+    margin-bottom:20px;
+}
+
+h2{
+    color:#34495e;
+    margin-bottom:20px;
+}
+
+p{
+    color:#555;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.cover{
+    background:linear-gradient(135deg,#3498db,#2c3e50);
+    color:white;
+    text-align:center;
+}
+
+.cover h1{
+    color:white;
+    font-size:3rem;
+    margin-top:100px;
+}
+
+.cover p{
+    color:white;
+}
+
+.note{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    color:#999;
+    font-size:14px;
+}
+
+ul{
+    margin-left:25px;
+    color:#555;
+}
+
+li{
+    margin-bottom:10px;
+}
+</style>
 </head>
+
 <body>
-    <h1>Welcome to Arun's Blog</h1>
-    <p>Technology, Cloud, AWS, Kubernetes and more.</p>
+
+<div class="book">
+
+    <!-- Cover -->
+    <div class="page" style="z-index:4;">
+        <div class="front cover">
+            <h1>📖 Arun's Cloud Notebook</h1>
+            <p>AWS | Kubernetes | DevOps | Engineering</p>
+            <br><br>
+            <p>Click anywhere on the page to turn it</p>
+        </div>
+    </div>
+
+    <!-- Page 1 -->
+    <div class="page" style="z-index:3;">
+        <div class="front">
+            <div class="page-content">
+                <h2>👋 Welcome</h2>
+                <p>
+                    Welcome to my personal blog.
+                    Here I share experiences, lessons learned,
+                    troubleshooting tips and cloud engineering insights.
+                </p>
+
+                <p>
+                    Topics include AWS, Kubernetes,
+                    Crossplane, EKS, IAM, networking
+                    and platform engineering.
+                </p>
+
+                <div class="note">Turn Page →</div>
+            </div>
+        </div>
+
+        <div class="back">
+            <div class="page-content">
+                <h2>☁️ AWS Notes</h2>
+                <ul>
+                    <li>VPC Design</li>
+                    <li>Transit Gateway</li>
+                    <li>IAM Best Practices</li>
+                    <li>EKS Operations</li>
+                    <li>Cost Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page" style="z-index:2;">
+        <div class="front">
+            <div class="page-content">
+                <h2>⚙️ DevOps</h2>
+
+                <p>
+                    CI/CD pipelines, GitHub Actions,
+                    Infrastructure as Code and automation.
+                </p>
+
+                <p>
+                    Building reliable cloud platforms
+                    through automation and observability.
+                </p>
+            </div>
+        </div>
+
+        <div class="back">
+            <div class="page-content">
+                <h2>🚀 Contact</h2>
+
+                <p>
+                    Thanks for visiting the notebook.
+                </p>
+
+                <p>
+                    More articles coming soon.
+                </p>
+
+                <p>
+                    GitHub: arunwinxp
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const pages = document.querySelectorAll(".page");
+let current = 0;
+
+pages.forEach((page,index)=>{
+    page.addEventListener("click",()=>{
+
+        if(index === current){
+            page.classList.add("flipped");
+            current++;
+        } else if(index === current - 1){
+            page.classList.remove("flipped");
+            current--;
+        }
+    });
+});
+</script>
+
 </body>
 </html>
